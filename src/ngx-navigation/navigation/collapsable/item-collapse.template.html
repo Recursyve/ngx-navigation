@@ -1,0 +1,30 @@
+<div class="nice-item-collapse">
+    <ng-content select="[beforeOutlet]"></ng-content>
+    <ng-content></ng-content>
+
+    <div class="nice-item-collapse-header nice-basic-item" (click)="toggleCollapse()">
+        <div class="nice-item-collapse-header-content">
+            <ng-content select="[collapseHeaderBefore]"></ng-content>
+
+            <div class="nice-item-icon-container">
+                <ng-content select="[collapseIcon]"></ng-content>
+            </div>
+
+            <div class="nice-item-title-container">
+                <ng-content select="[collapseTitle]"></ng-content>
+            </div>
+
+            <ng-content select="[collapseHeaderAfter]"></ng-content>
+        </div>
+
+        <div class="nice-item-collapse-chevron" [class.nice-item-collapse-rotate]="!collapsed()">
+            <svg x="0" y="0" viewBox="0 0 12 12" height="12" width="12"><path d="M9.6723 5.9819C9.6723 6.324 9.52565 6.61725 9.2813 6.81275L3.80745 11.6512C3.41645 11.99335 2.83 11.94445 2.53675 11.55345C2.2435 11.1625 2.2435 10.62485 2.6345 10.28275L7.4241 6.07965C7.47295 6.03075 7.47295 5.9819 7.4241 5.88415L2.6345 1.681C2.2435 1.3389 2.2435 0.7524 2.5856 0.4103C2.92775 0.0682 3.46535 0.0193 3.85635 0.31255L9.33015 5.10215C9.52565 5.34655 9.6723 5.63975 9.6723 5.9819Z" fill="currentColor" stroke-width="1"></path></svg>
+        </div>
+    </div>
+
+    <div class="nice-item-collapse-content" [class.hidden]=collapsed() [class.flex]="!collapsed()">
+        <ng-container niceNavigationCollapseOutlet></ng-container>
+    </div>
+
+    <ng-content select="[afterOutlet]"></ng-content>
+</div>
