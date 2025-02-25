@@ -1,6 +1,6 @@
 {
-    "name": "@recursyve/nice-filter-view",
-    "version": "18.0.0-beta.0",
+    "name": "@recursyve/ngx-navigation",
+    "version": "0.0.0-PLACEHOLDER",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",

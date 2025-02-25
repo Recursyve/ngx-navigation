@@ -1,6 +1,6 @@
 {
     "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "dest": "../../dist/filter-view",
+    "dest": "../../dist/ngx-navigation",
     "lib": {
         "entryFile": "index.ts"
     }

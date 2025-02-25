@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Directive, effect, inject, input, ViewContainerRef } from "@angular/core";
-import { NiceNavigationItemsRenderer } from "@recursyve/ngx-navigation/navigation/navigation-items";
+import { NiceNavigationItemsRenderer } from "./navigation-items";
 import { NavigationStore } from "./store";
 
 @Directive({

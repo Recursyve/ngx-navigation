@@ -12,12 +12,9 @@ import {
     ViewContainerRef
 } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
-import {
-    NavigationStore,
-    NiceNavigationItemRef,
-    NiceNavigationItemRefContext,
-    NiceNavigationOutlet
-} from "@recursyve/ngx-navigation";
+import { NiceNavigationItemRef, NiceNavigationItemRefContext } from "./navigation-item-ref";
+import { NiceNavigationOutlet } from "./navigation";
+import { NavigationStore } from "./store";
 
 @Directive()
 export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
