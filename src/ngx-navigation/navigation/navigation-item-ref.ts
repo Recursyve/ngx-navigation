@@ -10,7 +10,7 @@ export type NiceNavigationItemRefContext = {
     standalone: true
 })
 export class NiceNavigationItemRef {
-    public readonly name = input.required<string>();
+    public readonly name = input<string | null>(null, { alias: "niceNavigationItemRef" });
 
     public get parentRef(): NiceNavigationItemRef | null {
         return this.navigation?.ref ?? null;

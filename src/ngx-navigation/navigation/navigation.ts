@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Directive, effect, inject, input, ViewContainerRef } from "@angular/core";
-import { NiceNavigationItemsRenderer } from "./navigation-item-renderer";
+import { NiceNavigationItemsRenderer } from "@recursyve/ngx-navigation/navigation/navigation-items";
 import { NavigationStore } from "./store";
 
 @Directive({
@@ -29,7 +29,7 @@ export class NiceNavigation extends NiceNavigationItemsRenderer {
         super();
 
         effect(() => {
-            this.store.setItems(this._items());
+            this.store.setItems([...this._items()]);
         }, {
             allowSignalWrites: true
         });
