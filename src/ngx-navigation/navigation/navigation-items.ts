@@ -116,7 +116,6 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
     selector: "nice-basic-navigation",
     templateUrl: "./basic/item-basic.template.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [RouterLink, RouterLinkActive]
 })
 export class NiceBasicNavigationItems {
@@ -140,8 +139,7 @@ export class NiceNavigationCollapseOutlet {
     templateUrl: "./collapsable/item-collapse.template.html",
     providers: [{ provide: NiceNavigationItemsRenderer, useExisting: NavigationCollapse }],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NiceNavigationCollapseOutlet],
-    standalone: true
+    imports: [NiceNavigationCollapseOutlet]
 })
 export class NavigationCollapse extends NiceNavigationItemsRenderer {
     public chevron = input(true, { transform: booleanAttribute });
@@ -169,7 +167,6 @@ export class NiceNavigationSectionOutlet {
     templateUrl: "./section/item-section.template.html",
     providers: [{ provide: NiceNavigationItemsRenderer, useExisting: NavigationSection }],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NiceNavigationSectionOutlet],
-    standalone: true
+    imports: [NiceNavigationSectionOutlet]
 })
 export class NavigationSection extends NiceNavigationItemsRenderer {}

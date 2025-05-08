@@ -10,7 +10,6 @@ import {
 
 @Component({
     selector: "nice-root",
-    standalone: true,
     imports: [
         NiceNavigation,
         NavigationSection,

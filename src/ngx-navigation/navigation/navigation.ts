@@ -19,7 +19,6 @@ export class NiceNavigationOutlet {
     templateUrl: "navigation.template.html",
     providers: [NavigationStore, { provide: NiceNavigationItemsRenderer, useExisting: NiceNavigation }],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NiceNavigationOutlet]
 })
 export class NiceNavigation extends NiceNavigationItemsRenderer {
