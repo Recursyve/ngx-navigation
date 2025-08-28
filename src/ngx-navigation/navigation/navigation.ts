@@ -29,8 +29,6 @@ export class NiceNavigation extends NiceNavigationItemsRenderer {
 
         effect(() => {
             this.store.setItems([...this._items()]);
-        }, {
-            allowSignalWrites: true
         });
     }
 }

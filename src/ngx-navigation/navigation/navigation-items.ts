@@ -40,8 +40,6 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
     constructor() {
         effect(() => {
             this._render();
-        }, {
-            allowSignalWrites: true
         });
     }
 
