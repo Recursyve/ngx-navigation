@@ -39,30 +39,29 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
 
     constructor() {
         effect(() => {
-            this._render();
+            this._render(this.items());
         });
     }
 
     public ngAfterContentInit(): void {
         this._hasInitialized = true;
         this._cacheItemsRef();
-        this._render();
+        this._render(this.items());
     }
 
     public _outletAssigned(): void {
         if (this._navigationOutlet) {
-            this._render();
+            this._render(this.items());
         }
     }
 
-    public _render(): void {
+    public _render(items: string[]): void {
         if (!this._hasInitialized) {
             return;
         }
 
         this._navigationOutlet?.viewContainer.clear();
 
-        const items = this.items();
         for (const item of items) {
             const itemRef = this.contentItemRefByName.get(item);
             if (itemRef) {

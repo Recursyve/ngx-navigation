@@ -6,7 +6,7 @@
                     <img src="logo.svg" alt="Logo">
                 </div>
 
-                <nice-navigation class="flex-auto" [items]="items">
+                <nice-navigation class="flex-auto" [items]="items()">
                     <nice-navigation-section *niceNavigationItemRef="'home'">
                         <div class="px-6 pt-4">
                             <span class="text-md font-bold">Home</span>
@@ -42,6 +42,8 @@
             </div>
 
             <div class="relative flex w-full min-w-0 flex-auto overflow-x-hidden">
+                <button (click)="toggle()">Toogle</button>
+
                 <router-outlet></router-outlet>
             </div>
         </div>
