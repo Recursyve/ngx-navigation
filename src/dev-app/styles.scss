@@ -1,8 +1,8 @@
+@use "../ngx-navigation";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "../ngx-navigation";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
