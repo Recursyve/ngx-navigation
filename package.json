@@ -31,6 +31,7 @@
         "angular-eslint": "21.4.0",
         "autoprefixer": "^10.4.20",
         "eslint": "^9.39.1",
+        "jsdom": "^29.1.1",
         "ng-packagr": "^22.0.0",
         "postcss": "^8.5.1",
         "prettier": "^3.8.3",
