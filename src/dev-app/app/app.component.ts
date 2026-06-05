@@ -1,4 +1,4 @@
-import { Component, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import {
     NavigationCollapse,
@@ -20,6 +20,7 @@ import {
         NavigationSection
     ],
     templateUrl: "./app.template.html",
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: "./app.style.scss"
 })
 export class AppComponent {
