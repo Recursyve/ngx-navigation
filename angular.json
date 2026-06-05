@@ -78,6 +78,12 @@
                 "extract-i18n": {
                     "builder": "@angular/build:extract-i18n"
                 },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": ["src/dev-app/**/*.ts", "src/dev-app/**/*.html"]
+                    }
+                },
                 "test": {
                     "builder": "@angular/build:karma",
                     "options": {
@@ -121,6 +127,12 @@
                         }
                     },
                     "defaultConfiguration": "production"
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": ["src/ngx-navigation/**/*.ts", "src/ngx-navigation/**/*.html"]
+                    }
                 },
                 "test": {
                     "builder": "@angular/build:karma",
