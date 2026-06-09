@@ -23,9 +23,7 @@
                         "outputPath": "dist/ngx-navigation-app",
                         "index": "src/dev-app/index.html",
                         "browser": "src/dev-app/main.ts",
-                        "polyfills": [
-                            "zone.js"
-                        ],
+                        "polyfills": ["zone.js"],
                         "tsConfig": "src/dev-app/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": [
@@ -34,9 +32,7 @@
                                 "input": "public"
                             }
                         ],
-                        "styles": [
-                            "src/dev-app/styles.scss"
-                        ],
+                        "styles": ["src/dev-app/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {
@@ -59,6 +55,13 @@
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true
+                        },
+                        "testing": {
+                            "aot": false,
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "styles": ["src/styles.scss"],
+                            "polyfills": ["zone.js", "zone.js/testing"]
                         }
                     },
                     "defaultConfiguration": "production"
@@ -78,25 +81,18 @@
                 "extract-i18n": {
                     "builder": "@angular/build:extract-i18n"
                 },
-                "test": {
-                    "builder": "@angular/build:karma",
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
                     "options": {
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ],
-                        "tsConfig": "tsconfig.spec.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "public"
-                            }
-                        ],
-                        "styles": [
-                            "src/styles.scss"
-                        ],
-                        "scripts": []
+                        "lintFilePatterns": ["src/dev-app/**/*.ts", "src/dev-app/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@angular/build:unit-test",
+                    "options": {
+                        "tsConfig": "src/dev-app/tsconfig.spec.json",
+                        "buildTarget": ":build:testing",
+                        "runner": "vitest"
                     }
                 }
             }
@@ -122,43 +118,45 @@
                     },
                     "defaultConfiguration": "production"
                 },
-                "test": {
-                    "builder": "@angular/build:karma",
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
                     "options": {
-                        "tsConfig": "src/ngx-navigation/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
+                        "lintFilePatterns": ["src/ngx-navigation/**/*.ts", "src/ngx-navigation/**/*.html"]
+                    }
+                },
+                "test": {
+                    "builder": "@angular/build:unit-test",
+                    "options": {
+                        "tsConfig": "src/ngx-navigation/tsconfig.spec.json"
                     }
                 }
             }
         }
     },
     "schematics": {
-      "@schematics/angular:component": {
-        "type": "component"
-      },
-      "@schematics/angular:directive": {
-        "type": "directive"
-      },
-      "@schematics/angular:service": {
-        "type": "service"
-      },
-      "@schematics/angular:guard": {
-        "typeSeparator": "."
-      },
-      "@schematics/angular:interceptor": {
-        "typeSeparator": "."
-      },
-      "@schematics/angular:module": {
-        "typeSeparator": "."
-      },
-      "@schematics/angular:pipe": {
-        "typeSeparator": "."
-      },
-      "@schematics/angular:resolver": {
-        "typeSeparator": "."
-      }
+        "@schematics/angular:component": {
+            "type": "component"
+        },
+        "@schematics/angular:directive": {
+            "type": "directive"
+        },
+        "@schematics/angular:service": {
+            "type": "service"
+        },
+        "@schematics/angular:guard": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:interceptor": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:module": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:pipe": {
+            "typeSeparator": "."
+        },
+        "@schematics/angular:resolver": {
+            "typeSeparator": "."
+        }
     }
 }
