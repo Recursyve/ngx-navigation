@@ -1,5 +1,5 @@
-import { Directive, inject, input, TemplateRef } from "@angular/core";
-import { NiceNavigation } from "./navigation";
+import { Directive, forwardRef, inject, input, TemplateRef } from "@angular/core";
+import { NiceNavigationItemsRenderer } from "./navigation-items";
 
 export type NiceNavigationItemRefContext = {
     $implicit: string;
@@ -16,7 +16,10 @@ export class NiceNavigationItemRef {
         return this.navigation?.ref ?? null;
     }
 
-    protected navigation: NiceNavigation | null = inject(NiceNavigation, { optional: true, skipSelf: true });
+    protected navigation: NiceNavigationItemsRenderer | null = inject(
+        forwardRef(() => NiceNavigationItemsRenderer),
+        { optional: true, skipSelf: true }
+    );
 
     constructor(public templateRef: TemplateRef<NiceNavigationItemRefContext>) {}
 }

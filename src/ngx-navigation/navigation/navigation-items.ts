@@ -6,6 +6,7 @@ import {
     computed,
     contentChildren,
     Directive, effect,
+    forwardRef,
     inject,
     input,
     signal,
@@ -18,7 +19,10 @@ import { NavigationStore } from "./store";
 
 @Directive()
 export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
-    protected readonly _contentItemRef = contentChildren(NiceNavigationItemRef, { descendants: true });
+    protected readonly _contentItemRef = contentChildren(
+        forwardRef(() => NiceNavigationItemRef),
+        { descendants: true }
+    );
 
     public items = computed(() => {
         const items = this.store.items();
@@ -30,7 +34,7 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
         return items.filter((item) => item.startsWith(`${path}.`)).map((item) => item.replace(`${path}.`, ""));
     });
 
-    public ref: NiceNavigationItemRef | null = inject(NiceNavigationItemRef, { optional: true });
+    public ref: NiceNavigationItemRef | null = inject(forwardRef(() => NiceNavigationItemRef), { optional: true });
     public contentItemRefByName = new Map<string, NiceNavigationItemRef>();
     public _navigationOutlet: NiceNavigationOutlet | null = null;
     private _hasInitialized = false;
