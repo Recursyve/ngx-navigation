@@ -121,6 +121,9 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
 })
 export class NiceBasicNavigationItems {
     public link = input.required<string>();
+    public readonly exact = input(false, { transform: booleanAttribute });
+
+    protected readonly routerLinkActiveOptions = computed(() => ({ exact: this.exact() }));
 }
 
 @Directive({
