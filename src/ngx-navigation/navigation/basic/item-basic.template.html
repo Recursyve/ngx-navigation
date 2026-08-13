@@ -1,4 +1,9 @@
-<div class="nice-navigation-basic-item" [routerLink]="link()" routerLinkActive="item-active">
+<div
+    class="nice-navigation-basic-item"
+    [routerLink]="link()"
+    routerLinkActive="item-active"
+    [routerLinkActiveOptions]="routerLinkActiveOptions()"
+>
     <div class="nice-navigation-item-icon-container">
         <ng-content select="[itemIcon]"></ng-content>
     </div>
