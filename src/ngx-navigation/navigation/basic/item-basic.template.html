@@ -2,7 +2,7 @@
     class="nice-navigation-basic-item"
     [routerLink]="link()"
     routerLinkActive="item-active"
-    [routerLinkActiveOptions]="routerLinkActiveOptions()"
+    [routerLinkActiveOptions]="resolvedRouterLinkActiveOptions()"
 >
     <div class="nice-navigation-item-icon-container">
         <ng-content select="[itemIcon]"></ng-content>

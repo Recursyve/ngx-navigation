@@ -12,7 +12,7 @@ import {
     signal,
     ViewContainerRef
 } from "@angular/core";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from "@angular/router";
 import { NiceNavigationItemRef, NiceNavigationItemRefContext } from "./navigation-item-ref";
 import { NiceNavigationOutlet } from "./navigation";
 import { NavigationStore } from "./store";
@@ -113,6 +113,17 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
     }
 }
 
+const exactPathMatchOptions: IsActiveMatchOptions = {
+    paths: "exact",
+    queryParams: "ignored",
+    fragment: "ignored",
+    matrixParams: "ignored"
+};
+
+export const NICE_NAVIGATION_EXACT_PATH_MATCH_OPTIONS = exactPathMatchOptions;
+
+type RouterLinkActiveMatchOptions = IsActiveMatchOptions | { exact: boolean };
+
 @Component({
     selector: "nice-basic-navigation",
     templateUrl: "./basic/item-basic.template.html",
@@ -122,8 +133,20 @@ export abstract class NiceNavigationItemsRenderer implements AfterContentInit {
 export class NiceBasicNavigationItems {
     public link = input.required<string>();
     public readonly exact = input(false, { transform: booleanAttribute });
+    public readonly activeMatchOptions = input<RouterLinkActiveMatchOptions>();
 
-    protected readonly routerLinkActiveOptions = computed(() => ({ exact: this.exact() }));
+    protected readonly resolvedRouterLinkActiveOptions = computed((): RouterLinkActiveMatchOptions => {
+        const customOptions = this.activeMatchOptions();
+        if (customOptions !== undefined) {
+            return customOptions;
+        }
+
+        if (this.exact()) {
+            return exactPathMatchOptions;
+        }
+
+        return { exact: false };
+    });
 }
 
 @Directive({

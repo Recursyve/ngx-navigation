@@ -1,12 +1,16 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { provideRouter } from "@angular/router";
+import { IsActiveMatchOptions, provideRouter } from "@angular/router";
 import { RouterTestingHarness } from "@angular/router/testing";
 import { NiceBasicNavigationItems } from "./navigation-items";
 
 @Component({
     template: `
-        <nice-basic-navigation link="/dashboard" [exact]="exact">
+        <nice-basic-navigation
+            link="/dashboard"
+            [exact]="exact"
+            [activeMatchOptions]="activeMatchOptions"
+        >
             <span itemTitle>Dashboard</span>
         </nice-basic-navigation>
     `,
@@ -14,6 +18,7 @@ import { NiceBasicNavigationItems } from "./navigation-items";
 })
 class TestHostComponent {
     public exact = false;
+    public activeMatchOptions: IsActiveMatchOptions | { exact: boolean } | undefined;
 }
 
 describe("NiceBasicNavigationItems", () => {
@@ -67,5 +72,41 @@ describe("NiceBasicNavigationItems", () => {
         fixture.detectChanges();
 
         expect(getNavigationItem().classList.contains("item-active")).toBe(true);
+    });
+
+    it("marks the item active on the exact route with query params when exact is true", async () => {
+        host.exact = true;
+        fixture.detectChanges();
+
+        await harness.navigateByUrl("/dashboard?tab=overview");
+        fixture.detectChanges();
+
+        expect(getNavigationItem().classList.contains("item-active")).toBe(true);
+    });
+
+    it("uses activeMatchOptions over exact when both are set", async () => {
+        host.exact = true;
+        host.activeMatchOptions = { exact: false };
+        fixture.detectChanges();
+
+        await harness.navigateByUrl("/dashboard/users");
+        fixture.detectChanges();
+
+        expect(getNavigationItem().classList.contains("item-active")).toBe(true);
+    });
+
+    it("supports custom activeMatchOptions", async () => {
+        host.activeMatchOptions = {
+            paths: "exact",
+            queryParams: "exact",
+            fragment: "ignored",
+            matrixParams: "ignored"
+        };
+        fixture.detectChanges();
+
+        await harness.navigateByUrl("/dashboard?tab=overview");
+        fixture.detectChanges();
+
+        expect(getNavigationItem().classList.contains("item-active")).toBe(false);
     });
 });
